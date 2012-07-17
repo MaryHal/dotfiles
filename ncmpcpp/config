@@ -1,0 +1,132 @@
+##### Connection ######
+mpd_host      = "localhost"
+mpd_port      = "6600" 
+mpd_music_dir = "/media/shared/music"
+mpd_connection_timeout = "5"
+mpd_crossfade_time     = "5"
+mpd_communication_mode = "notifications" (polling/notifications)
+
+##### system encoding #####
+#system_encoding = ""
+
+##### delays #####
+playlist_disable_highlight_delay = "5"
+message_delay_time = "4"
+
+##### song format #####
+## for song format you can use:
+## %l - length
+## %f - short filename
+## %F - full filename
+## %a - artist
+## %t - title
+## %b - album
+## %y - year
+## %n - track number
+## %g - genre
+## %c - composer
+## %p - performer
+## %d - disc
+## %C - comment
+## %R - begin right align
+##
+## - 0 - default window color (discards all other colors)
+## - 1 - black
+## - 2 - red
+## - 3 - green
+## - 4 - yellow
+## - 5 - blue
+## - 6 - magenta
+## - 7 - cyan
+## - 8 - white
+## - 9 - end of current color
+##
+
+# Playlist
+#song_window_title_format = "ncmpcpp"
+song_window_title_format = "{%a - }{%t}|{%f}"
+#song_columns_list_format = "(5)[magenta]{l} (28)[cyan]{a} (30)[blue]{b} (50)[white]{t}"
+
+song_columns_list_format = "$L(5)[white]{l} (20)[red]{a} (35)[green]{t}$R(20)[cyan]{b}"
+song_list_format = " $5%l $9$3│$9{$7 %a $9$3│$9$2 %n %t$9$R$3%b$9 }|{$6 %f $1}"
+#song_list_format = " $1$9%l$1$9 $1│$9 $2%a$9 $1│$9 $5%b$9 $R$1$9%t$1$9 $3│$9 $3%n$9 "
+song_library_format = "{%n > }{%t}|{%f}"
+
+playlist_separate_albums = "yes"
+playlist_display_mode       = "columns" (classic/columns)
+search_engine_display_mode  = "classic" (classic/columns)
+
+autocenter_mode  = "yes"
+centered_cursor  = "yes"
+cyclic_scorlling = "no"
+fancy_scrolling  = "no"
+
+now_playing_prefix = "$b"
+now_playing_subfix = "/$b"
+
+selected_item_prefix = ""
+selected_item_suffix = "$9"
+
+# Browser
+browser_playlist_prefix = "$2playlist »$9 "
+browser_display_mode    = "classic" (classic/columns)
+
+# Tag Editor
+tag_editor_album_format = "{(%y) }%b"
+
+# Bars
+song_status_format = "{%a - }{%t - }{%b}"
+#progressbar_look = "░█ "
+titles_visibility = "no"
+header_visibility = "no"
+statusbar_visibility = "no" 
+
+# Other Interface Settings
+user_interface                  = "alternative"
+# Alternative format
+#alternative_header_first_line_format  = "{%t}"
+#alternative_header_second_line_format = "$7{%a} - $5{%b} $8{(%y)}"
+
+playlist_show_remaining_time    = "no"
+
+seek_time                       = "3"
+incremental_seeking             = "no"
+
+default_place_to_search_in      = "database" (database/playlist)
+media_library_left_column       = "g" (possible values: a,y,g,c,p, legend above)
+
+default_find_mode               = "wrapped" (wrapped/normal)
+default_space_mode              = "add" (add/select)
+
+default_tag_editor_left_col     = "dirs" (albums/dirs)
+default_tag_editor_pattern      = "%n - %t"
+
+follow_now_playing_lyrics       = "yes"
+
+ncmpc_like_songs_adding         = "no" (enabled - add/remove, disabled - always add)
+show_hidden_files_in_local_browser = "no"
+
+display_screens_numbers_on_start = "yes"
+clock_display_seconds           = "no"
+
+regular_expressions = "basic" (basic/extended)
+
+# Colors
+discard_colors_if_item_is_selected = "no"
+header_window_color = "default"
+volume_color = "cyan"
+state_line_color = "black"
+state_flags_color = "green"
+main_window_color = "green"
+color1 = "cyan"
+color2 = "black"
+main_window_highlight_color = "default"
+progressbar_color = "black"
+statusbar_color = "red"
+active_column_color = "red"
+visualizer_color = "cyan"
+
+# Other
+external_editor = "vim"
+use_console_editor = "yes"
+

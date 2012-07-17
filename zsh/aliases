@@ -1,0 +1,83 @@
+#!/bin/zsh
+
+# zsh variables
+export EDITOR="vim"
+export IMGVIEWER='sxiv'
+export VIDEOPLAYER='mplayer'
+export AUDIOPLAYER='mplayer'
+export BROWSER='firefox'
+
+export PDFVIEWER='zathura'
+export DJVUVIEWER='zathura'
+
+export PAGER='vimpager'
+
+########################################
+# Aliases
+alias :q='exit'
+alias :e='vim'
+
+alias x='cd && xinit'
+alias X='cd && xinit'
+
+alias ls='ls --color=auto -F --group-directories-first'
+alias lsa='ls -A --color=auto -F --group-directories-first'
+
+alias rm='rm -Iv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+alias rcp='rsync -hv --progress'
+alias rmv='rsync -hv --progress --remove-source-files'
+
+alias uz='7za'
+
+export GREP_COLOR="1;32"   # some greps have colorized ouput. enable...
+export GREPCOLOR="1;32"    # ditto here
+alias grep='grep --color=auto' 
+
+# get xprop CLASS and NAME
+alias xp='xprop | ack "WM_CLASS"'
+#alias fixres='xrandr --size 1280x800'
+
+alias weechat='weechat-curses'
+#alias wifi='wicd-curses'
+alias tnethack='urxvtc -tn "rxvt-unicode" -e telnet nethack.alt.org & disown'
+
+alias vimsession='vim -S '
+
+alias o='xdg-open'
+
+########################################
+# Suffix Aliases 
+# Video/Audio aliases
+alias -s {mpg,mpeg,avi,ogm,ogv,wmv,m4v,mp4,mov,f4v,mkv,flv,rmvb}=$VIDEOPLAYER
+alias -s {mp3,ogg,wav,flac}=$AUDIOPLAYER
+
+# Image Aliases
+alias -s {bmp,jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}=$IMGVIEWER
+
+# Document Aliases
+alias -s {odt,doc,docx,ppt,pptx,xls,xlsx,rtf}='libreoffice'
+alias -s pdf=$PDFVIEWER
+alias -s djvu=$DJVUVIEWER
+
+# Interets Aliases
+alias -s {html,htm,org,com,org,net}=$BROWSER
+alias -s swf=$BROWSER
+
+# Scripts
+alias -s py='python'
+alias -s pl='perl'
+
+# Text Editor stuff
+alias -s {txt,log}=$EDITOR
+
+# Windows progs
+#alias -s exe=wine
+
+
