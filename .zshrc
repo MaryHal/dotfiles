@@ -94,8 +94,4 @@ source ~/.config/zsh/completion
 PS1=$'\n%F{cyan}%n%F{white}@%F{magenta}%m %F{yellow}%~ %F{white}%% '
 PS2=$'\n%F{red}%_>%F{white}'
 
-export PERL_LOCAL_LIB_ROOT="/home/sanford/perl5";
-export PERL_MB_OPT="--install_base /home/sanford/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/sanford/perl5";
-export PERL5LIB="/home/sanford/perl5/lib/perl5/x86_64-linux-thread-multi:/home/sanford/perl5/lib/perl5";
-export PATH="/home/sanford/perl5/bin:$PATH";
+export PATH="/home/sanford/.gem/ruby/1.9.1/bin:$PATH";

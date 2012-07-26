@@ -22,6 +22,8 @@ Bundle 'The-NERD-tree'
 
 Bundle 'tpope/vim-fugitive'
 Bundle 'ervandew/supertab'
+Bundle 'derekwyatt/vim-protodef'
+Bundle 'derekwyatt/vim-fswitch'
 
 Bundle 'ack.vim'
 
@@ -134,6 +136,8 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+let protodefprotogetter = $VIM . 'bundle/vim-protodef/pullproto.pl'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,7 +182,7 @@ set ttyfast
 
 set autowrite
 
-set ofu=syntaxcomplete#Complete
+"set ofu=syntaxcomplete#Complete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -393,7 +397,7 @@ else
     " set guifont=ProggyTinyTTSZ:h12:cANSI
 endif
 
-set guioptions=
+set guioptions=acg
 set ffs=unix,dos,mac "Default file types
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
