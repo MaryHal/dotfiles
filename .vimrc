@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 Bundle 'mattsa/vim-fuzzee'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache-snippets-complete'
 
 "Bundle 'QuickBuf'
 Bundle 'bufkill.vim'
@@ -21,7 +22,7 @@ Bundle 'The-NERD-tree'
 "Bundle 'taglist.vim'
 
 Bundle 'tpope/vim-fugitive'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 Bundle 'derekwyatt/vim-protodef'
 Bundle 'derekwyatt/vim-fswitch'
 
@@ -38,6 +39,7 @@ filetype plugin indent on " required!
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
+set shortmess=I
 
 " Sets how many lines of history VIM has to remember
 set history=300
@@ -390,7 +392,7 @@ nnoremap <silent> <C-o> :CtrlPBuffer<CR>
 "nnoremap <silent> <C-o> :Bufferlist<CR>
 
 map <F7> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-let protodefprotogetter = "~/.vim/pullproto.pl"
+let protodefprotogetter = "/home/sanford/.vim/bundle/vim-protodef/pullproto.pl"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NeoCacheComplete stuff
@@ -419,6 +421,12 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+imap <C-l> <Plug>(neocomplcache_snippets_expand)
+smap <C-l> <Plug>(neocomplcache_snippets_expand)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -473,6 +481,4 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
-let protodefprotogetter = $VIM . 'bundle/vim-protodef/pullproto.pl'
 
