@@ -1,6 +1,6 @@
 (provide 'copypaste_term)
 
-					; http://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
+; http://hugoheden.wordpress.com/2009/03/08/copypaste-with-emacs-in-terminal/
 ;; I prefer using the "clipboard" selection (the one the
 ;; typically is used by c-c/c-v) before the primary selection
 ;; (that uses mouse-select/middle-button-click)

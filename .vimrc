@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ï»¿"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
@@ -13,6 +13,8 @@ Bundle 'mattsa/vim-fuzzee'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-snippets-complete'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
 
 "Bundle 'QuickBuf'
 Bundle 'bufkill.vim'
@@ -21,7 +23,7 @@ Bundle 'a.vim'
 Bundle 'The-NERD-tree'
 "Bundle 'taglist.vim'
 
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-fugitive'
 "Bundle 'ervandew/supertab'
 Bundle 'derekwyatt/vim-protodef'
 Bundle 'derekwyatt/vim-fswitch'
@@ -30,6 +32,7 @@ Bundle 'ack.vim'
 
 Bundle 'Zenburn'
 Bundle 'fu'
+"Bundle 'nanotech/jellybeans.vim'
 
 Bundle 'Lokaltog/vim-powerline'
 
@@ -39,6 +42,8 @@ filetype plugin indent on " required!
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
+
+" No intro splash
 set shortmess=I
 
 " Sets how many lines of history VIM has to remember
@@ -99,7 +104,7 @@ set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.d                              " dependecy files
+set wildignore+=*.d                              " dependency files
 set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX BS
@@ -170,7 +175,7 @@ set autoindent
 set cindent
 
 set list
-set lcs=extends:»,precedes:«,tab:»¯,trail:°
+set lcs=extends:Â»,precedes:Â«,tab:Â»Â¯,trail:Â°
 set wrap
 " set textwidth=79
 " set colorcolumn=85
@@ -218,14 +223,12 @@ imap kj <ESC>
 "inoremap <A-Space> <Esc>
 
 " Bracket matching made easy?
-nnoremap <tab> %
-vnoremap <tab> % 
+"nnoremap <tab> %
+"vnoremap <tab> % 
 
 " Tab Switching (non-terminal vim only)
-nmap <C-S-tab> :tabp<CR>
-nmap <C-tab>   :tabn<CR>
-
-
+"nmap <C-S-tab> :tabp<CR>
+"nmap <C-tab>   :tabn<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Key Remapping
@@ -304,7 +307,7 @@ set ffs=unix,dos,mac "Default file types
 " Always show the statusline
 set laststatus=2
 
-hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
+hi StatColor guibg=#94e454 guifg=black ctermbg=lightgreen ctermfg=black
 hi Modified guibg=orange guifg=black ctermbg=lightred ctermfg=black
 
 let &guicursor = &guicursor . ",a:blinkon0"
@@ -328,11 +331,11 @@ function! CompileAndRun(runProgram)
     if filereadable("SConstruct")
         setl makeprg=scons
     elseif filereadable("Makefile") || filereadable("makefile")
-        setl makeprg=make\ -j3 
+        setl makeprg=make\ -j \ -k
     elseif filereadable("build.xml")
         setl makeprg=ant
     elseif &filetype == 'c'
-        setl makeprg=gcc\ -Wall\ -o\ %<\ %
+        setl makeprg=gcc\ -Wall\ -std=c99\ -o\ %<\ %
     elseif &filetype == 'cpp'
         setl makeprg=g++\ -Wall\ -o\ %<\ %
     elseif &filetype == 'java'
@@ -377,80 +380,85 @@ endfunction
 let NerdTreeQuitOnExit=1
 
 nnoremap <silent> <F1> <ESC>:NERDTreeToggle<CR>
+
 nnoremap <silent> <F4>  :CtrlPBuffer<CR>
 nnoremap <silent> <C-o> :CtrlPBuffer<CR>
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $VIM . '/cache/ctrlp'
 
-"map <C-o> <ESC>:LustyFilesystemExplorer<CR>
-"map <C-p> <ESC>:LustyFilesystemExplorerFromHere<CR>
-"nnoremap <silent> <F2> :LustyFilesystemExplorer<CR>
-"nnoremap <silent> <F3> :LustyFilesystemExplorerFromHere<CR>
-"nnoremap <silent> <F4> :LustyBufferExplorer<CR>
-
-"let g:buffetdisabledefaultmaps = 1
-
-"nnoremap <silent> <F4> :Bufferlist<CR>
-"nnoremap <silent> <C-o> :Bufferlist<CR>
-
-map <F7> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F7> :!ctags --verbose=yes -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let protodefprotogetter = "/home/sanford/.vim/bundle/vim-protodef/pullproto.pl"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NeoCacheComplete stuff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " supertab
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '&omnifunc'
-let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:SuperTabContextDiscoverDiscovery =
-       \ ["&omnifunc:<c-x><c-o>", "&completefunc<c-x><c-n>"]
+"let g:SuperTabDefaultCompletionType = 'context'
+"let g:SuperTabContextDefaultCompletionType = '&omnifunc'
+"let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+"let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+"let g:SuperTabContextDiscoverDiscovery =
+"       \ ["&omnifunc:<c-x><c-o>", "&completefunc<c-x><c-n>"]
 
 " neocomplcache
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
+
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_enable_camel_case_completion = 1
+
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ }
+
 if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
 endif
+
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
+" Snippets
+let g:neocomplcache_disable_select_mode_mappings = 1
 imap <C-l> <Plug>(neocomplcache_snippets_expand)
 smap <C-l> <Plug>(neocomplcache_snippets_expand)
+imap <silent> <C-k> <Plug>(neocomplcache_snippets_jump)
+
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
+"inoremap <expr> <CR> neocomplcache#smart_close_popup() . "\<CR>"
+inoremap <expr><silent> <CR> <SID>my_cr_function()
+function! s:my_cr_function()
+    return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h>  neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>   neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplcache_enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplcache_enable_insert_char_pre = 1
-
 " AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
@@ -461,7 +469,6 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " Enable omni completion.
 autocmd FileType cpp set omnifunc=omni#cpp#complete#Main
-
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -477,8 +484,4 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
