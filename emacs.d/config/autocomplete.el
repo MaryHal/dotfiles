@@ -22,11 +22,6 @@
 "
                )))
 
-(setq ac-auto-start t)
-(setq ac-quick-help-delay 0.5)
-;;(ac-set-trigger-key "TAB")
-;;(define-key ac-mode-map  [(control tab)] 'auto-complete)
-
 (defun my-ac-config ()
   (setq-default ac-sources '(ac-source-abbrev
 			     ac-source-dictionary
@@ -46,9 +41,14 @@
 ;; ac-source-gtags
 (my-ac-config)
 
-;; Default settings
+(setq ac-auto-start nil)
+(setq ac-quick-help-delay 0.5)
+(ac-set-trigger-key "TAB")
+;;(define-key ac-mode-map  [(control tab)] 'auto-complete)
+
+;; Key mappings
 (setq ac-use-menu-map t)
 
 ;(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "<backtab>" 'ac-previous)
+;(define-key ac-menu-map "<backtab>" 'ac-previous)
 
