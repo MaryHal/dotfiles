@@ -13,7 +13,7 @@
 (setq ido-create-new-buffer 'always)
 
 ;; Dired uses human readable sizes.
-(setq dired-listing-switches "-alh") 
+(setq dired-listing-switches "-alh")
 
 ;;; Keys
 ;; Navigate windows with M-<arrows>
