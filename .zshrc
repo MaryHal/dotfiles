@@ -95,3 +95,4 @@ PS1=$'\n%F{cyan}%n%F{white}@%F{magenta}%m %F{yellow}%~ %F{white}%% '
 PS2=$'\n%F{red}%_>%F{white}'
 
 export PATH="/home/sanford/.gem/ruby/1.9.1/bin:$PATH";
+
