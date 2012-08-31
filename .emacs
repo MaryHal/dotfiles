@@ -22,7 +22,9 @@
    yasnippet
    workgroups
    powerline
-   magit))
+   magit
+   lua-mode
+   haskell-mode))
 
 (el-get 'sync)
 
@@ -33,14 +35,16 @@
 
 ;; Personal Stuff
 (add-to-list 'load-path (concat user-emacs-directory "config"))
-(require 'c_config)
+(require 'c_common_config)
 (require 'evil_config) ; uses evil
 (require 'theme)       ; uses color-theme, color-theme-twilight, powerline
 
-; Uses auto-complete-config, auto-complete-clang, auto-complete-yasnippet, yasnippet, auto-complete-emacs-lisp
+; Uses auto-complete-config, auto-complete-clang,
+; auto-complete-yasnippet, yasnippet, auto-complete-emacs-lisp
 (require 'autocomplete)
 
 (require 'func)
+(require 'keybindings)
 (require 'misc)
 
 (require 'copypaste_term)
