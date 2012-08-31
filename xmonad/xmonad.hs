@@ -16,7 +16,7 @@ import XMonad.Util.EZConfig
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.NamedScratchpad
 
-import qualified Data.Map as M 
+import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 
 import Dzen
@@ -35,7 +35,7 @@ main = do
 
     --xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
-        { startupHook        = setWMName "LG3D" 
+        { startupHook        = setWMName "LG3D"
         , modMask            = mod4Mask
         , terminal           = myTerminal
         , borderWidth        = myBorderWidth
@@ -171,6 +171,7 @@ myManageHook = mainManageHook <+> namedScratchpadManageHook myScratchPads
 addKeys :: [((ButtonMask, KeySym), X())]
 addKeys =
     [ ((mod4Mask          , xK_p ), spawn dmenuCmd)
+    , ((mod4Mask          , xK_n ), spawn "~/bin/menu/menumenu")
     , ((mod4Mask          , xK_o ), spawn "~/bin/menu/mpcmenu")
     , ((mod4Mask          , xK_r ), spawn "feh --bg-fill $(find /home/sanford/shared/wallpapers/current -type f | shuf -n1)")
     , ((mod4Mask          , xK_s ), spawn "~/bin/menu/shutdownmenu")
@@ -192,14 +193,14 @@ addKeys =
     , ((0             , xF86XK_AudioStop), spawn "mpc stop -q")
 
     -- Volume
-    , ((0             , xF86XK_AudioLowerVolume), spawn "amixer -q set 'Master' '1-'") 
-    , ((0             , xF86XK_AudioRaiseVolume), spawn "amixer -q set 'Master' '1+'") 
-    , ((0             , xF86XK_AudioMute)       , spawn "amixer -q set 'Master' 'toggle'") 
+    , ((0             , xF86XK_AudioLowerVolume), spawn "amixer -q set 'Master' '1-'")
+    , ((0             , xF86XK_AudioRaiseVolume), spawn "amixer -q set 'Master' '1+'")
+    , ((0             , xF86XK_AudioMute)       , spawn "amixer -q set 'Master' 'toggle'")
 
-    , ((mod4Mask          , xK_Down) , spawn "amixer -q set 'Master' '1-'") 
-    , ((mod4Mask          , xK_Up)   , spawn "amixer -q set 'Master' '1+'") 
-    , ((mod4Mask .|. controlMask , xK_Down) , spawn "amixer -q set 'Speaker' '1-'") 
-    , ((mod4Mask .|. controlMask , xK_Up)   , spawn "amixer -q set 'Speaker' '1+'") 
+    , ((mod4Mask          , xK_Down) , spawn "amixer -q set 'Master' '1-'")
+    , ((mod4Mask          , xK_Up)   , spawn "amixer -q set 'Master' '1+'")
+    , ((mod4Mask .|. controlMask , xK_Down) , spawn "amixer -q set 'Speaker' '1-'")
+    , ((mod4Mask .|. controlMask , xK_Up)   , spawn "amixer -q set 'Speaker' '1+'")
 
     -- Other Keys
     , ((mod4Mask                  , xK_Print), spawn "scrot -e 'mv $f ~/tmp/'")
@@ -207,8 +208,8 @@ addKeys =
 
     -- Brightness
     , ((mod4Mask          , xK_i)   , spawn "~/bin/menu/brightnessmenu")
-    , ((mod4Mask          , xK_Left) , spawn "xbacklight -dec 10") 
-    , ((mod4Mask          , xK_Right), spawn "xbacklight -inc 10") 
+    , ((mod4Mask          , xK_Left) , spawn "xbacklight -dec 10")
+    , ((mod4Mask          , xK_Right), spawn "xbacklight -inc 10")
     ]
     ++
     -- Un-greedy view
@@ -218,12 +219,12 @@ addKeys =
     ++
     -- Swapping workspaces
     [((mod4Mask .|. controlMask, k), windows $ swapWithCurrent i)
-        | (i, k) <- zip myWorkspaces [xK_1 ..]] 
+        | (i, k) <- zip myWorkspaces [xK_1 ..]]
 
 ------------------------------------------------------------------------
 -- Logging/Status Bar
 --
-myLogHook h = dynamicLogWithPP $ defaultPP 
+myLogHook h = dynamicLogWithPP $ defaultPP
             { ppCurrent = dzenColor colorFG colorBG2
             --, ppHidden  = dzenColor colorNormal colorBG
             , ppVisible = dzenColor colorFG colorBG2
@@ -246,4 +247,3 @@ myLogHook h = dynamicLogWithPP $ defaultPP
             | x == "Full" = "Full^p(4)^i(/home/sanford/.xmonad/bitmaps/full.xbm)"
             -}
             | otherwise   = x
-

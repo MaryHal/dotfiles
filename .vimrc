@@ -32,7 +32,7 @@ Bundle 'ack.vim'
 
 Bundle 'Zenburn'
 Bundle 'fu'
-"Bundle 'nanotech/jellybeans.vim'
+Bundle 'nanotech/jellybeans.vim'
 
 Bundle 'Lokaltog/vim-powerline'
 
