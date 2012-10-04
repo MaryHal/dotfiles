@@ -58,7 +58,6 @@ URxvt*background:	#000000
 *color9:	#CC896D
 *color10:	#7DB37D
 *color0:	#222222
-*color1:	#9E5641
 
 dzen2.font:       -*-Terminus-medium-r-normal-*-12-*-*-*-*-*-iso8859-2
 dzen2.foreground: #bbbbbb

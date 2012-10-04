@@ -30,9 +30,11 @@ Bundle 'derekwyatt/vim-fswitch'
 
 Bundle 'ack.vim'
 
-Bundle 'Zenburn'
+"Bundle 'Zenburn'
 Bundle 'fu'
-Bundle 'nanotech/jellybeans.vim'
+"Bundle 'nanotech/jellybeans.vim'
+"Bundle 'w0ng/vim-hybrid'
+Bundle 'chriskempson/tomorrow-theme'
 
 Bundle 'Lokaltog/vim-powerline'
 
